@@ -53,7 +53,7 @@ class Full extends Component {
         <div className="app-body">
           <Sidebar {...this.props}/>
           <main className="main">
-            <Breadcrumb />
+            <Row>&nbsp;</Row>
             <Container fluid>
             <Row>
               <AddContact addContact={ this.handleAddContact }/>
@@ -64,6 +64,7 @@ class Full extends Component {
           </main>
           <Aside />
         </div>
+          <Footer />
       </div>
     );
   }

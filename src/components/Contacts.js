@@ -55,7 +55,7 @@ class Contacts extends Component {
                 <i className="fa fa-align-justify"></i> Contact List
               </CardHeader>
               <CardBody>
-                <Table responsive bordered>
+                <Table responsive bordered size="sm">
                   <thead>
                   <tr>
                     <th><i class="icon-people"></i></th>

@@ -43,11 +43,11 @@ class ContactPerson extends Component {
         return (
 
             <tr className="ContactPerson">
-                <td align="center"> <img src={'../img/default.png'} width="50px" height="50px" /></td>
+                <td align="center"> <img src={'img/default.png'} width="30px" height="30px" /></td>
                 <td>{ this.props.contact.name }</td>
                 <td>{ this.props.contact.number }</td>
                 <td>
-                    <Button color="primary" size="sm">Edit</Button>{' '}
+                    {/*<Button color="primary" size="sm">Edit</Button>{' '}*/}
                     <Button color="danger" size="sm" onClick={ this.deleteContact.bind(this, this.props.contact.id) }><i className="fa fa-ban"></i> Delete</Button>{' '}
                 </td>
             </tr>
