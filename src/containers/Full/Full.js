@@ -1,7 +1,39 @@
 import React, {Component} from 'react';
 import uuid from 'uuid';
 import {Link, Switch, Route, Redirect} from 'react-router-dom';
-import {Container, Row} from 'reactstrap';
+import {
+  Container,
+  Badge,
+  Row,
+  Col,
+  Progress,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  CardTitle,
+  Form,
+  FormGroup,
+  FormText,
+  Button,
+  ButtonToolbar,
+  ButtonGroup,
+  ButtonDropdown,
+  Label,
+  Modal, 
+  ModalHeader, 
+  ModalBody, 
+  ModalFooter,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  Table
+} from 'reactstrap';
 import Header from '../../components/Header/';
 import Sidebar from '../../components/Sidebar/';
 import Breadcrumb from '../../components/Breadcrumb/';
@@ -20,14 +52,22 @@ class Full extends Component {
   super();
   this.state = {
     contacts: (typeof localStorage["contacts"] !== "undefined") ? JSON.parse(localStorage.getItem('contacts')) : [
-      {id: uuid.v4(), profile: "default.png", name: "Mark Andrey Dela Cruz", number: "09269566991"},
-      {id: uuid.v4(), profile: "default.png", name: "Jan Cruz", number: "09269566991"},
-      {id: uuid.v4(), profile: "default.png", name: "April Cruz", number: "09269566991"},
-      {id: uuid.v4(), profile: "default.png", name: "Peter Parker", number: "09269566991"}
-    ]
+      {id: uuid.v4(), profile: "default.png", name: "Mark Andrey Dela Cruz", number: "09269566991", email: "markandreydelacruz@ymail.com", address: "SHV, Muntinlupa City"},
+      {id: uuid.v4(), profile: "default.png", name: "Jan Cruz", number: "09269566991", email: "markandreydelacruz@ymail.com", address: "SHV, Muntinlupa City"},
+      {id: uuid.v4(), profile: "default.png", name: "April Cruz", number: "09269566991", email: "markandreydelacruz@ymail.com", address: "SHV, Muntinlupa City"},
+      {id: uuid.v4(), profile: "default.png", name: "Peter Parker", number: "09269566991", email: "markandreydelacruz@ymail.com", address: "SHV, Muntinlupa City"}
+    ],
+    modal: false
   }
     this.handleAddContact =  this.handleAddContact.bind(this);
     this.handleDeleteContact =  this.handleDeleteContact.bind(this);
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
   }
 
   handleAddContact(contact) {
@@ -35,7 +75,7 @@ class Full extends Component {
     contacts.push(contact);
     localStorage.setItem('contacts', JSON.stringify(contacts));
     this.setState({contacts:contacts});
-    alert('New Contact Added');
+    alert('New Contact Added!');
   }
 
   handleDeleteContact(id) {
@@ -55,10 +95,19 @@ class Full extends Component {
           <main className="main">
             <Row>&nbsp;</Row>
             <Container fluid>
-            <Row>
-              <AddContact addContact={ this.handleAddContact }/>
+            
               {/*<EditContact addContact={ this.handleAddContact }/>*/}
-            </Row>
+              <Button color="success" onClick={this.toggle}>New Contact</Button>
+
+              <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                <ModalHeader toggle={this.toggle}><strong>New</strong> Contact</ModalHeader>
+                
+                  <AddContact addContact={ this.handleAddContact }/>
+                
+                
+              </Modal>
+            
+              <Row>&nbsp;</Row>
               <Contacts onDelete={ this.handleDeleteContact } contacts = { this.state.contacts }/>
             </Container>
           </main>

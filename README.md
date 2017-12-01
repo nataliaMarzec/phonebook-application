@@ -2,6 +2,7 @@
 Using ReactJS and CoreUI
 [Demo Application](http://phonebook-react.surge.sh)
 
-## Screenshots
+## App Screenshots
 
-<a href="url"><img src="https://raw.githubusercontent.com/andreycruz16/phonebook-application/master/screenshots/phonebook.png" align="left"  ></a>
+<a href="url"><img src="https://raw.githubusercontent.com/andreycruz16/phonebook-application/master/screenshots/pb1.png" align="left"  ></a>
+<a href="url"><img src="https://raw.githubusercontent.com/andreycruz16/phonebook-application/master/screenshots/pb2.png" align="left"  ></a>

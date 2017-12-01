@@ -23,6 +23,10 @@ import {
   ButtonGroup,
   ButtonDropdown,
   Label,
+  Modal, 
+  ModalHeader, 
+  ModalBody, 
+  ModalFooter,
   Input,
   InputGroup,
   InputGroupAddon,
@@ -35,11 +39,22 @@ class AddContact extends Component {
         super(props);
         this.state = {
             name: '',
-            number: '', 
+            number: '',
+            email: '',
+            address: '',
+            modal: false 
         }
 
         this.handleName = this.handleName.bind(this);
         this.handleNumber = this.handleNumber.bind(this);
+        this.handleEmail = this.handleEmail.bind(this);
+        this.handleAddress = this.handleAddress.bind(this);
+    }
+
+    toggle() {
+      this.setState({
+        modal: !this.state.modal
+      });
     }
 
     handleName(e) {
@@ -54,17 +69,33 @@ class AddContact extends Component {
         });
     }
 
+    handleEmail(e) {
+        this.setState({
+            email: e.target.value
+        });
+    }
+
+    handleAddress(e) {
+        this.setState({
+            address: e.target.value
+        });
+    }
+
     handleSubmit(e) {
         const newContact = {
             id: uuid.v4(),
             name: this.state.name,
-            number: this.state.number
+            number: this.state.number,
+            email: this.state.email,
+            address: this.state.address
         }
         
         this.props.addContact(newContact);
         this.setState({
             name: '',
             number: '',
+            email: '',
+            address: ''
         });
 
         e.preventDefault();
@@ -74,12 +105,9 @@ class AddContact extends Component {
     render() {
 
     return (
-          <Col xs="6" md="6">
-          <Card>
-              <CardHeader>
-                <strong>New</strong> Contact
-              </CardHeader>
-              <CardBody>
+          <Col xs="12" md="12">
+                <ModalBody>
+              
                 <Form action="" method="post" className="form-horizontal">
                   <FormGroup row>
                     <Col md="3">
@@ -97,20 +125,33 @@ class AddContact extends Component {
                       <Input type="text" id="hf-mobile-number" name="hf-mobile-number" placeholder="Enter Contact Number..." required={ true } value={ this.state.number } onChange={ this.handleNumber }/>
                     </Col>
                   </FormGroup>
-                  {/*<FormGroup row>
-                                      <Col md="3">
-                                        <Label htmlFor="file-input">Profile Picture (Optional)</Label>
-                                      </Col>
-                                      <Col xs="12" md="9">
-                                        <Input type="file" id="file-input" name="file-input"/>
-                                      </Col>
-                                    </FormGroup>*/}
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="hf-email">Email</Label>
+                    </Col>
+                    <Col xs="12" md="9">
+                      <Input type="text" id="hf-email" name="hf-email" placeholder="Enter Email..." required={ true } value={ this.state.email } onChange={ this.handleEmail }/>
+                    </Col>
+                  </FormGroup>
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="hf-address">Home&nbsp;Address</Label>
+                    </Col>
+                    <Col xs="12" md="9">
+                      <Input type="text" id="hf-address" name="hf-address" placeholder="Enter Address..." required={ true } value={ this.state.address } onChange={ this.handleAddress }/>
+                    </Col>
+                  </FormGroup>
                 </Form>
-              </CardBody>
-              <CardFooter>
-                <Button type="submit" size="sm" color="success" onClick={ this.handleSubmit.bind(this) }><i className="fa fa-dot-circle-o"></i> Submit</Button>
-              </CardFooter>
-          </Card>
+
+                </ModalBody>
+
+                <ModalFooter>
+                  <Button type="<submit></submit>" color="success" onClick={ this.handleSubmit.bind(this) }><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                </ModalFooter>
+              
+              
+              
+          
           </Col>
     );
   }

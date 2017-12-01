@@ -61,6 +61,8 @@ class Contacts extends Component {
                     <th><i class="icon-people"></i></th>
                     <th>Name</th>
                     <th>Mobile Number</th>
+                    <th>Email</th>
+                    <th>Home</th>
                     <th>Action</th>
                   </tr>
                   </thead>

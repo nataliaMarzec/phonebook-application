@@ -21,6 +21,10 @@ import {
   ButtonGroup,
   ButtonDropdown,
   Label,
+  Modal, 
+  ModalHeader, 
+  ModalBody, 
+  ModalFooter,
   Input,
   InputGroup,
   InputGroupAddon,
@@ -31,6 +35,21 @@ import ContactPerson from '../Contacts/ContactPerson';
 
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+    };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
   render() {
     let contactList;
         if (this.props.contacts) {
@@ -43,39 +62,21 @@ class Dashboard extends Component {
 
     return (
       <div className="animated fadeIn">
-        {/*<Row>
-                  <Col xs="12" md="6">
-                  <Card>
-                      <CardHeader>
-                        <strong>New</strong> Contact
-                      </CardHeader>
-                      <CardBody>
-                        <Form action="" method="post" className="form-horizontal">
-                          <FormGroup row>
-                            <Col md="3">
-                              <Label htmlFor="hf-name">Name</Label>
-                            </Col>
-                            <Col xs="12" md="9">
-                              <Input type="text" id="hf-name" name="hf-name" placeholder="Enter Name..."/>
-                            </Col>
-                          </FormGroup>
-                          <FormGroup row>
-                            <Col md="3">
-                              <Label htmlFor="hf-mobile-number">Contact&nbsp;Number</Label>
-                            </Col>
-                            <Col xs="12" md="9">
-                              <Input type="text" id="hf-mobile-number" name="hf-mobile-number" placeholder="Enter Contact Number..."/>
-                            </Col>
-                          </FormGroup>
-                        </Form>
-                      </CardBody>
-                      <CardFooter>
-                        <Button type="submit" size="sm" color="success"><i className="fa fa-dot-circle-o"></i> Submit</Button>
-                        <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
-                      </CardFooter>
-                  </Card>
-                  </Col>
-                </Row>*/}
+        <Button onClick={this.toggle}>Launch demo modal</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalBody>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
 
         <Row>
           <Col xs="12" lg="12">
